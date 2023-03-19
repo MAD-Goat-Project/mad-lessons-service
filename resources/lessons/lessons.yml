@@ -1,0 +1,15 @@
+categories:
+  - oss
+  - microservices
+  - containers
+  - iac
+  - apis
+
+oss:
+  title: Open Source Software
+  Lessons:
+    - Inconsistent Security Standards
+    - Unknown Source Code Origins
+    - Licensing Noncompliance
+
+

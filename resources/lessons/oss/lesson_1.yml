@@ -1,0 +1,41 @@
+name: Inconsistent Security Standards
+introduction:
+  description:
+    When it comes to security, open source code varies widely. Some projects, like the Linux kernel, maintain very high security standards (but still sometimes let vulnerabilities slip by). On the other hand, there are any number of tools on GitHub that don’t set the bar so high. Open source software can be quite secure—but sometimes, it’s not very secure at all.
+    This inconsistency presents a challenge for developers because they need to vet the security of third-party open source code case by case. Although open source advocates like to claim that “many eyeballs make all bugs shallow” and the community is likely to quickly discover and fix vulnerabilities, the number of eyes on a given open source codebase can vary significantly. The less attention an open source project gets and the less experienced its developers, the more likely it is to have low security standards.
+
+  image:
+    - src: /images/lessons/oss/lesson_1/oss_lesson_1.png
+    - alt: A screenshot of the GitHub repository for the open source project, “The Linux Kernel.” The repository has 1,000 stars and 1,000 forks. The repository has 1,000 stars and 1,000 forks.
+    - cation: The Linux Kernel has 1,000 stars and 1,000 forks on GitHub.
+
+
+assessment:
+  first:
+    type: multiple_choice
+    description: An e-commerce platform for online stores (shops) provides a listing page with the revenue charts for their hosted shops. Inspecting the browser requests, an attacker can identify the API endpoints used as a data source for those charts and their pattern /shops/{shopName}/revenue_data.json. Using another API endpoint, the attacker can get the list of all hosted shop names. With a simple script to manipulate the names in the list, replacing {shopName} in the URL, the attacker gains access to the sales data of thousands of e-commerce stores.
+    goal: List of all hosted shop names. With a simple script to manipulate the names in the list, replacing {shopName} in the URL, the attacker gains access to the sales data of thousands of e-commerce stores.
+    correctAnswer: https://www.example.com/shops/{shopName}/revenue_data.json
+    explanation: Open source software is often not well documented. Open source software is often not secure. Open source software is often not well maintained. Open source software is often not well tested.
+
+    hints:
+      - Open source software is often not secure.
+      - Open source software is often not well maintained.
+      - Open source software is often not well documented.
+      - Open source software is often not well tested.
+
+
+summary:
+  description:
+    Open source software is often not secure. Open source software is often not well maintained. Open source software is often not well documented. Open source software is often not well tested.
+
+  image:
+    - src: /images/lessons/oss/lesson_1/oss_lesson_1.png
+    - alt: A screenshot of the GitHub repository for the open source project, “The Linux Kernel.” The repository has 1,000 stars and 1,000 forks. The repository has 1,000 stars and 1,000 forks.
+    - cation: The Linux Kernel has 1,000 stars and 1,000 forks on GitHub.
+
+  conclusion:
+    - Open source software is often not secure.
+    - Open source software is often not well maintained.
+    - Open source software is often not well documented.
+    - Open source software is often not well tested.
