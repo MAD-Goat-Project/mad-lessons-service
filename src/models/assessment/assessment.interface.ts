@@ -5,7 +5,7 @@
 
 export interface IAssessment {
   id: number;
-  lesson_id: number;
+  lesson: number;
   type: string;
   description: string;
 }

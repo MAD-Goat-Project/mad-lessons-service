@@ -1,6 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { AssessmentEntity } from '../assessment/assessment.entity';
-import { IAnswer } from './answer.interface';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { AssessmentEntity } from "../assessment/assessment.entity";
+import { IAnswer } from "./answer.interface";
 
 @Entity('answer')
 export class AnswerEntity implements IAnswer {

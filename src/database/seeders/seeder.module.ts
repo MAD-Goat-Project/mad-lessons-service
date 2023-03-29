@@ -1,5 +1,5 @@
 import { PostgresProviderModule } from "../../providers/postgres.provider.module";
-import { CategorySeederModule } from "./category/category.module";
+import { CategorySeederModule } from "./category/data.module";
 import { Logger, Module } from "@nestjs/common";
 import { Seeder } from "./seeder";
 

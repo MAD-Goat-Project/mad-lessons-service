@@ -1,6 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { AssessmentEntity } from '../assessment/assessment.entity';
-import { IUserAssessmentProgress } from './user-assessment-progress.interface';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { AssessmentEntity } from "../assessment/assessment.entity";
+import { IUserAssessmentProgress } from "./user-assessment-progress.interface";
 
 @Entity('user_assessment_progress')
 export class UserAssessmentProgressEntity implements IUserAssessmentProgress {

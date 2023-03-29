@@ -5,7 +5,7 @@ import { SeederModule } from "./seeder.module";
 
 async function bootstrap() {
   NestFactory.createApplicationContext(SeederModule)
-    .then(appContext => {
+    .then((appContext) => {
       const logger = appContext.get(Logger);
       const seeder = appContext.get(Seeder);
       seeder
@@ -13,13 +13,13 @@ async function bootstrap() {
         .then(() => {
           logger.debug('Seeding complete!');
         })
-        .catch(error => {
+        .catch((error) => {
           logger.error('Seeding failed!');
           throw error;
         })
         .finally(() => appContext.close());
     })
-    .catch(error => {
+    .catch((error) => {
       throw error;
     });
 }

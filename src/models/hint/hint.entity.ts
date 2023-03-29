@@ -1,6 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { IHint } from './hint.interface';
-import { AssessmentEntity } from '../assessment/assessment.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { IHint } from "./hint.interface";
+import { AssessmentEntity } from "../assessment/assessment.entity";
 
 @Entity('hint')
 export class HintEntity implements IHint {
