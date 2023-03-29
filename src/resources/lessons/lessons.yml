@@ -12,4 +12,37 @@ oss:
     - Unknown Source Code Origins
     - Licensing Noncompliance
 
+microservices:
+  title: Microservices
+  Lessons:
+    - Expanding Complexity
+    - Limited Environment Control
+    - Inappropriately Securing Data
+    - Inappropriately Securing the Network
+
+containers:
+    title: Containers
+    Lessons:
+        - Running Containers from Insecure Sources
+        - Unknown Source Code Origins
+        - Too Much Faith in Image Scanning
+        - Broader Attack Surface
+        - Bloated Base Images
+        - Lack of Rigid Isolation
+        - Less Visibility
+
+iac:
+    title: Infrastructure as Code
+    Lessons:
+        - Steep Learning Curve
+        - Human Error
+        - Configuration Drift
+        - Exposing Sensitive Data and Ports
+
+apis:
+    title: API Security
+    Lessons:
+        - Third-Party APIs
+        - Redundant API Considerations
+        - Insufficient Emphasis on API Monitoring
 

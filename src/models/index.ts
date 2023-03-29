@@ -1,6 +1,6 @@
-import { Category } from './category/category.entity';
+import { CategoryEntity } from './category/category.entity';
 
-const entities = [Category];
+const entities = [CategoryEntity];
 
-export { Category };
+export { CategoryEntity };
 export default entities;

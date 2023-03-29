@@ -4,14 +4,14 @@ import { AppService } from './app.service';
 import { LessonsModule } from './lessons/lessons.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProvidersModule } from './providers/providers.module';
+import { PostgresProviderModule } from './providers/postgres.provider.module';
 import entities from './models';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     LessonsModule,
-    ProvidersModule,
+    PostgresProviderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
