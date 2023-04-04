@@ -1,7 +1,6 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export class CreateLessonDto  {
-
+export class CreateLessonDto {
   @IsNotEmpty()
   @IsString()
   name: string;
@@ -17,5 +16,4 @@ export class CreateLessonDto  {
   @IsNotEmpty()
   @IsString()
   image_alt: string;
-
 }

@@ -1,7 +1,7 @@
-import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import entities from "../models/entitities";
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import entities from '../models/entitities';
 
 /**
  * Import and provide base typeORM for postgres database

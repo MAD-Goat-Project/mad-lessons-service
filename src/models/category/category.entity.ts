@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { ICategory } from "./category.interface";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ICategory } from './category.interface';
 
 @Entity('category')
 export class CategoryEntity implements ICategory {

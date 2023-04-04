@@ -1,11 +1,26 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
-import { LessonsService } from "./lessons.service";
-import { CreateLessonDto } from "./dto/create-lesson.dto";
-import { UpdateLessonDto } from "./dto/update-lesson.dto";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
+import { LessonsService } from './lessons.service';
+import { CreateLessonDto } from './dto/create-lesson.dto';
+import { UpdateLessonDto } from './dto/update-lesson.dto';
+import { CategoriesService } from '../categories/categories.service';
 
-@Controller('lessons')
+@Controller('categories/:category/lessons')
 export class LessonsController {
-  constructor(private readonly lessonsService: LessonsService) {}
+  constructor(
+    private readonly lessonsService: LessonsService,
+    private readonly categoriesService: CategoriesService,
+  ) {}
 
   @Post()
   @UsePipes(ValidationPipe)
@@ -14,8 +29,8 @@ export class LessonsController {
   }
 
   @Get()
-  findAll() {
-    return this.lessonsService.findAll();
+  findAll(@Param('category', ParseIntPipe) category: number) {
+    return this.lessonsService.findAll(category);
   }
 
   @Get(':id')
