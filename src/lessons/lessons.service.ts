@@ -33,6 +33,7 @@ export class LessonsService {
     return this.lessonRepository
       .createQueryBuilder('lesson')
       .where('lesson.category_id = :category_id', { category_id })
+      .orderBy('lesson.id', 'ASC')
       .getMany();
   }
 

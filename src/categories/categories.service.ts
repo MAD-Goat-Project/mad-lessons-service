@@ -7,6 +7,8 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class CategoriesService {
+  ove;
+
   constructor(
     @InjectRepository(CategoryEntity)
     private readonly categoryRepository: Repository<CategoryEntity>,
@@ -17,8 +19,12 @@ export class CategoriesService {
     return this.categoryRepository.save(newCategory);
   }
 
-  findAll() {
-    return this.categoryRepository.find();
+  findAll(name: string) {
+    const whereCondition = name ? { name } : {};
+    return this.categoryRepository.find({
+      select: ['id', 'name', 'full_name'],
+      where: whereCondition,
+    });
   }
 
   async findOne(id: number) {

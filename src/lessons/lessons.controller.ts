@@ -35,7 +35,7 @@ export class LessonsController {
 
   @Get(':id')
   @UsePipes(ValidationPipe)
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     return this.lessonsService.findOne(+id);
   }
 

@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -24,8 +25,9 @@ export class CategoriesController {
   }
 
   @Get()
-  findAll() {
-    return this.categoriesService.findAll();
+  @UsePipes(ValidationPipe)
+  async findAll(@Query('name') name: string) {
+    return this.categoriesService.findAll(name);
   }
 
   @Get(':id')

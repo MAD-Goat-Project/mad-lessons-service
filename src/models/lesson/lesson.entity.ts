@@ -22,6 +22,9 @@ export class LessonEntity implements ILesson {
   name: string;
 
   @Column({ type: 'varchar', length: 255 })
+  description: string;
+
+  @Column({ type: 'varchar', length: 255 })
   image_src: string;
 
   @Column({ type: 'varchar', length: 255 })
