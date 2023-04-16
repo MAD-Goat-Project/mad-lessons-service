@@ -21,12 +21,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "doc": "compodoc -p tsconfig.json -s --port 9000",
-    "seed": "ts-node -r tsconfig-paths/register src/database/seeders/seed.ts"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn run lint:check && yarn run test"
-    }
+    "seed": "ts-node -r tsconfig-paths/register src/database/seeders/seed.ts",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@compodoc/compodoc": "^1.1.19",
@@ -57,7 +53,7 @@
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "jest": "29.3.1",
     "prettier": "^2.3.2",
     "source-map-support": "^0.5.20",
