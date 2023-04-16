@@ -1,0 +1,9 @@
+name: Create and publish a Docker image
+
+on:
+  push:
+    branches: [ 'main' ]
+
+jobs:
+  build-and-push-image:
+    uses: MAD-Goat-Project/github-actions-workflows/workflows/release.yml@main
