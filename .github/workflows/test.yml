@@ -2,4 +2,5 @@ name: Test
 on: [ push, pull_request ]
 
 jobs:
-  uses: MAD-Goat-Project/github-actions-workflows/.github/workflows/test/nest.yml@main
+  test:
+    uses: MAD-Goat-Project/github-actions-workflows/.github/workflows/test/nest.yml@main
