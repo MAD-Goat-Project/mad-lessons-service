@@ -50,10 +50,10 @@ $ yarn run test:cov
 
 ## Support
 
-[gha-test-badge]: https://github.com/MAD-Goat-Project/mad-web-app/actions/workflows/test.yml/badge.svg
+[gha-test-badge]: https://github.com/MAD-Goat-Project/mad-lessons-service/actions/workflows/test.yml/badge.svg
 
-[gha-test-url]: https://github.com/MAD-Goat-Project/mad-web-app/actions/workflows/test.yml
+[gha-test-url]: https://github.com/MAD-Goat-Project/mad-lessons-service/actions/workflows/test.yml
 
-[gha-build-badge]: https://github.com/MAD-Goat-Project/mad-web-app/actions/workflows/release.yml/badge.svg
+[gha-build-badge]: https://github.com/MAD-Goat-Project/mad-lessons-service/actions/workflows/publish.yml/badge.svg
 
-[gha-build-url]: https://github.com/MAD-Goat-Project/mad-web-app/actions/workflows/release.yml
+[gha-build-url]: https://github.com/MAD-Goat-Project/mad-lessons-service/actions/workflows/publish.yml
