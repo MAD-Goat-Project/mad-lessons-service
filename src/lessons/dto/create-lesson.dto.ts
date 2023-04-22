@@ -6,6 +6,10 @@ export class CreateLessonDto {
   name: string;
 
   @IsNotEmpty()
+  @IsString()
+  description: string;
+
+  @IsNotEmpty()
   @IsNumber()
   category_id: number;
 

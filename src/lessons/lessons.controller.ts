@@ -13,22 +13,22 @@ import {
 import { LessonsService } from './lessons.service';
 import { CreateLessonDto } from './dto/create-lesson.dto';
 import { UpdateLessonDto } from './dto/update-lesson.dto';
-import { CategoriesService } from '../categories/categories.service';
 
 @Controller('categories/:category/lessons')
 export class LessonsController {
-  constructor(
-    private readonly lessonsService: LessonsService,
-    private readonly categoriesService: CategoriesService,
-  ) {}
+  constructor(private readonly lessonsService: LessonsService) {}
 
   @Post()
   @UsePipes(ValidationPipe)
-  create(@Body() createLessonDto: CreateLessonDto) {
-    return this.lessonsService.create(createLessonDto);
+  async create(
+    @Param('category', ParseIntPipe) category: number,
+    @Body() createLessonDto: CreateLessonDto,
+  ) {
+    return this.lessonsService.create(category, createLessonDto);
   }
 
   @Get()
+  @UsePipes(ValidationPipe)
   findAll(@Param('category', ParseIntPipe) category: number) {
     return this.lessonsService.findAll(category);
   }

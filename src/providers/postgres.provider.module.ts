@@ -19,7 +19,7 @@ import entities from '../models/entitities';
         database: configService.get('DB_NAME'),
         entities: entities,
         // TODO : Change this to false in production
-        synchronize: false,
+        synchronize: true,
       }),
       inject: [ConfigService],
     }),

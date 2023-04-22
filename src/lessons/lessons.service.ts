@@ -15,13 +15,13 @@ export class LessonsService {
     private readonly categoryService: CategoriesService,
   ) {}
 
-  async create(createLessonDto: CreateLessonDto) {
-    //TODO : Improve Exceptions
-    const category = await this.categoryService.findOne(
+  async create(category: number, createLessonDto: CreateLessonDto) {
+    // TODO : Improve Exceptions
+    const categoryExists = await this.categoryService.findOne(
       createLessonDto.category_id,
     );
 
-    if (!category) {
+    if (!categoryExists && createLessonDto.category_id !== category) {
       throw new HttpException('Invalid category ID', HttpStatus.BAD_REQUEST);
     }
 
@@ -29,6 +29,7 @@ export class LessonsService {
     return this.lessonRepository.save(newLesson);
   }
 
+  // TODO : Validate Category ID
   findAll(category_id: number) {
     return this.lessonRepository
       .createQueryBuilder('lesson')

@@ -39,3 +39,7 @@ lerna-debug.log*
 
 # documentation
 /documentation
+
+# local env files
+.env.local
+.env
