@@ -5,6 +5,7 @@ import { LessonsModule } from './lessons/lessons.module';
 import { ConfigModule } from '@nestjs/config';
 import { PostgresProviderModule } from './providers/postgres.provider.module';
 import { CategoriesModule } from './categories/categories.module';
+import { AssessmentsModule } from './assessments/assessments.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { CategoriesModule } from './categories/categories.module';
     LessonsModule,
     PostgresProviderModule,
     CategoriesModule,
+    AssessmentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -6,9 +6,8 @@ import { LessonEntity } from './lesson/lesson.entity';
 import { UserAssessmentProgressEntity } from './user-assessment-progress/user-assessment-progress.entity';
 import { UserLessonProgressEntity } from './user-lesson-progress/user-lesson-progress.entity';
 
-const entities = [CategoryEntity, LessonEntity];
-
-// const entities = [CategoryEntity, LessonEntity, AssessmentEntity, AnswerEntity, HintEntity, UserAssessmentProgressEntity, UserLessonProgressEntity
+// TODO: Add all entities here
+const entities = [CategoryEntity, LessonEntity, AssessmentEntity];
 
 export {
   AnswerEntity,
