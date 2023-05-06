@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -24,8 +25,13 @@ export class AssessmentsController {
   }
 
   @Get()
-  findAll() {
-    return this.assessmentsService.findAll();
+  findAll(@Query('lessonId') lessonId: string) {
+    const lessonIdAsNumber = parseInt(lessonId, 10);
+    if (Number.isNaN(lessonIdAsNumber)) {
+      return this.assessmentsService.findAll();
+    } else {
+      return this.assessmentsService.findAllByLessonId(lessonIdAsNumber);
+    }
   }
 
   @Get(':id')

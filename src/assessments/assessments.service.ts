@@ -36,4 +36,12 @@ export class AssessmentsService {
   remove(id: number) {
     return this.assessmentRepository.delete(id);
   }
+
+  findAllByLessonId(lesson_id: number) {
+    return this.assessmentRepository
+      .createQueryBuilder('assessment')
+      .where('assessment.lesson_id = :lesson_id', { lesson_id })
+      .orderBy('assessment.id', 'ASC')
+      .getMany();
+  }
 }
