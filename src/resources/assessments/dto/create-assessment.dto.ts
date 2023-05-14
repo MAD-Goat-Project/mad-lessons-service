@@ -6,7 +6,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
-import { AssessmentType } from '../../models/assessment/assessment.interface';
+import { AssessmentType } from '../../../models/assessment/assessment.interface';
 
 export class CreateAssessmentDto {
   @IsNotEmpty()

@@ -3,7 +3,7 @@ import { CreateAssessmentDto } from './dto/create-assessment.dto';
 import { UpdateAssessmentDto } from './dto/update-assessment.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { AssessmentEntity } from '../models/entitities';
+import { AssessmentEntity } from '../../models/entitities';
 
 @Injectable()
 export class AssessmentsService {

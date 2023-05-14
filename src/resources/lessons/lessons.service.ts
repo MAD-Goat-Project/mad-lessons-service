@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { CreateLessonDto } from './dto/create-lesson.dto';
 import { UpdateLessonDto } from './dto/update-lesson.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { LessonEntity } from '../models/entitities';
+import { LessonEntity } from '../../models/entitities';
 import { Repository } from 'typeorm';
 import { CategoriesService } from '../categories/categories.service';
 

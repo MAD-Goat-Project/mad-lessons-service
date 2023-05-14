@@ -1,4 +1,10 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { AssessmentEntity } from '../assessment/assessment.entity';
 import { IAnswer } from './answer.interface';
 
@@ -7,7 +13,8 @@ export class AnswerEntity implements IAnswer {
   @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
   id: number;
 
-  @OneToMany(() => AssessmentEntity, (assessment) => assessment.id)
+  @ManyToOne(() => AssessmentEntity)
+  @JoinColumn({ name: 'assessment_id', referencedColumnName: 'id' })
   assessment_id: number;
 
   @Column({ type: 'text' })
