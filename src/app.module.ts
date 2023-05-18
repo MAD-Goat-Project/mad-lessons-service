@@ -7,6 +7,15 @@ import { PostgresProviderModule } from './providers/postgres.provider.module';
 import { CategoriesModule } from './resources/categories/categories.module';
 import { AssessmentsModule } from './resources/assessments/assessments.module';
 import { AnswersModule } from './resources/answers/answers.module';
+import {
+  AuthGuard,
+  KeycloakConnectModule,
+  ResourceGuard,
+  RoleGuard,
+} from 'nest-keycloak-connect';
+import { APP_GUARD } from '@nestjs/core';
+import { KeycloakConfigService } from './config/keycloak-config.service';
+import { AppConfigModule } from './config/app-config.module';
 
 @Module({
   imports: [
@@ -16,8 +25,41 @@ import { AnswersModule } from './resources/answers/answers.module';
     CategoriesModule,
     AssessmentsModule,
     AnswersModule,
+    KeycloakConnectModule.registerAsync({
+      useExisting: KeycloakConfigService,
+      imports: [AppConfigModule],
+    }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    // This adds a global level authentication guard,
+    // you can also have it scoped
+    // if you like.
+    //
+    // Will return a 401 unauthorized when it is unable to
+    // verify the JWT token or Bearer header is missing.
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+    // This adds a global level resource guard, which is permissive.
+    // Only controllers annotated with @Resource and
+    // methods with @Scopes
+    // are handled by this guard.
+    {
+      provide: APP_GUARD,
+      useClass: ResourceGuard,
+    },
+    // New in 1.1.0
+    // This adds a global level role guard, which is permissive.
+    // Used by `@Roles` decorator with the
+    // optional `@AllowAnyRole` decorator for allowing any
+    // specified role passed.
+    {
+      provide: APP_GUARD,
+      useClass: RoleGuard,
+    },
+  ],
 })
 export class AppModule {}
