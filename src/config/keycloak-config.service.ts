@@ -18,8 +18,6 @@ export class KeycloakConfigService implements KeycloakConnectOptionsFactory {
       clientId: configService.get('KC_CLIENT_ID'),
       secret: configService.get('KC_SECRET'),
       cookieKey: 'KEYCLOAK_JWT',
-      logLevels: ['verbose'],
-      useNestLogger: false,
       policyEnforcement: PolicyEnforcementMode.PERMISSIVE,
       tokenValidation: TokenValidation.ONLINE,
     };

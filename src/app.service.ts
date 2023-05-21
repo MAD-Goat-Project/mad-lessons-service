@@ -5,7 +5,8 @@ export class AppService implements OnModuleInit {
   onModuleInit() {
     console.log('AppService initialized');
   }
-  getHello(): string {
-    return 'Hello World!';
+
+  getMadLessons(): string {
+    return 'Welcome to MAD Lessons!';
   }
 }

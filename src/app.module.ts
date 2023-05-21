@@ -44,9 +44,8 @@ import { AppConfigModule } from './config/app-config.module';
       useClass: AuthGuard,
     },
     // This adds a global level resource guard, which is permissive.
-    // Only controllers annotated with @Resource and
-    // methods with @Scopes
-    // are handled by this guard.
+    // This guard handles only controllers annotated with @Resource and
+    // methods with @Scopes.
     {
       provide: APP_GUARD,
       useClass: ResourceGuard,
