@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import entities from '../models/entitities';
 
 /**
- * Import and provide base typeORM for postgres database
+ * Import and provide base typeORM for a postgres database
  */
 @Module({
   imports: [

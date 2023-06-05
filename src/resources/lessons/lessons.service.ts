@@ -35,7 +35,14 @@ export class LessonsService {
       .createQueryBuilder('lesson')
       .where('lesson.category_id = :category_id', { category_id })
       .orderBy('lesson.id', 'ASC')
-      .getMany();
+      .getMany()
+      .then((lessons) =>
+        lessons.map((lesson) => ({
+          ...lesson,
+          id: Number(lesson.id), // Convert the id to number
+        })),
+      );
+    // TODO: This is a hack that doesn't make sense. Fix this. https://github.com/typeorm/typeorm/issues/873
   }
 
   findOne(id: number) {

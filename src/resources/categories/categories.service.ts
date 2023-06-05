@@ -7,8 +7,6 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class CategoriesService {
-  ove;
-
   constructor(
     @InjectRepository(CategoryEntity)
     private readonly categoryRepository: Repository<CategoryEntity>,

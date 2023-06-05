@@ -1,13 +1,28 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { AssessmentEntity } from '../assessment/assessment.entity';
 import { IUserAssessmentProgress } from './user-assessment-progress.interface';
 
 @Entity('user_assessment_progress')
+@Index(
+  'idx_user_assessment_progress_unique',
+  ['user_id', 'assessment_id', 'status'],
+  {
+    unique: true,
+  },
+)
 export class UserAssessmentProgressEntity implements IUserAssessmentProgress {
   @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
   id: number;
 
-  @OneToMany(() => AssessmentEntity, (assessment) => assessment.id)
+  @ManyToOne(() => AssessmentEntity)
+  @JoinColumn({ name: 'assessment_id', referencedColumnName: 'id' })
   assessment_id: number;
 
   @Column({ type: 'varchar', length: 255 })

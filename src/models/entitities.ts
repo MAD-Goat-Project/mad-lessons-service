@@ -7,7 +7,14 @@ import { UserAssessmentProgressEntity } from './user-assessment-progress/user-as
 import { UserLessonProgressEntity } from './user-lesson-progress/user-lesson-progress.entity';
 
 // TODO: Add all entities here
-const entities = [CategoryEntity, LessonEntity, AssessmentEntity, AnswerEntity];
+const entities = [
+  CategoryEntity,
+  LessonEntity,
+  AssessmentEntity,
+  AnswerEntity,
+  UserLessonProgressEntity,
+  UserAssessmentProgressEntity,
+];
 
 export {
   AnswerEntity,

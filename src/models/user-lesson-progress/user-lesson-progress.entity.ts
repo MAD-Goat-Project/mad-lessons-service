@@ -1,18 +1,29 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { CategoryEntity } from '../category/category.entity';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { IUserLessonProgress } from './user-lesson-progress.interface';
+import { LessonEntity } from '../lesson/lesson.entity';
 
 @Entity('user_lesson_progress')
+@Index('idx_user_lesson_progress_unique', ['user_id', 'lesson_id', 'status'], {
+  unique: true,
+})
 export class UserLessonProgressEntity implements IUserLessonProgress {
   @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
   id: number;
 
-  @OneToMany(() => CategoryEntity, (category) => category.id)
+  @ManyToOne(() => LessonEntity)
+  @JoinColumn({ name: 'lesson_id', referencedColumnName: 'id' })
   lesson_id: number;
 
-  @Column({ type: 'varchar', length: 50 })
-  name: string;
-
+  /**
+   * Keycloak user subscription id
+   */
   @Column({ type: 'varchar', length: 255 })
   user_id: string;
 

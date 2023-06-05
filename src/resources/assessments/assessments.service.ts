@@ -40,8 +40,22 @@ export class AssessmentsService {
   findAllByLessonId(lesson_id: number) {
     return this.assessmentRepository
       .createQueryBuilder('assessment')
+      .select([
+        'assessment.id',
+        'assessment.lesson_id',
+        'assessment.type',
+        'assessment.description',
+        'assessment.goal',
+      ])
       .where('assessment.lesson_id = :lesson_id', { lesson_id })
       .orderBy('assessment.id', 'ASC')
-      .getMany();
+      .getMany()
+      .then((assessments) => {
+        return assessments.map((assessment) => ({
+          ...assessment,
+          id: Number(assessment.id), // Convert the id to number
+          // TODO: This is a hack that doesn't make sense. Fix this.
+        }));
+      });
   }
 }

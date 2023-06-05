@@ -16,6 +16,9 @@ import {
 import { APP_GUARD } from '@nestjs/core';
 import { KeycloakConfigService } from './config/keycloak-config.service';
 import { AppConfigModule } from './config/app-config.module';
+import { AssessmentProgressModule } from './resources/assessment-progress/assessment-progress.module';
+import { HintsModule } from './resources/hints/hints.module';
+import { LessonProgressModule } from './resources/lesson-progress/lesson-progress.module';
 
 @Module({
   imports: [
@@ -29,6 +32,9 @@ import { AppConfigModule } from './config/app-config.module';
       useExisting: KeycloakConfigService,
       imports: [AppConfigModule],
     }),
+    AssessmentProgressModule,
+    HintsModule,
+    LessonProgressModule,
   ],
   controllers: [AppController],
   providers: [
