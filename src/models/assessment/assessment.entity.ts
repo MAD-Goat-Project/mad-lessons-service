@@ -10,7 +10,7 @@ import { LessonEntity } from '../lesson/lesson.entity';
 
 @Entity('assessment')
 export class AssessmentEntity implements IAssessment {
-  @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
+  @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   id: number;
 
   @ManyToOne(() => LessonEntity)

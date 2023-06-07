@@ -3,7 +3,7 @@ import { ICategory } from './category.interface';
 
 @Entity('category')
 export class CategoryEntity implements ICategory {
-  @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
+  @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   id: number;
 
   @Column({ type: 'varchar', length: 25, unique: true })

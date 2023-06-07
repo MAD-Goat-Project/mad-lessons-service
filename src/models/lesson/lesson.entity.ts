@@ -10,7 +10,7 @@ import { CategoryEntity } from '../category/category.entity';
 
 @Entity('lesson')
 export class LessonEntity implements ILesson {
-  @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
+  @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   //@OneToMany(() => AssessmentEntity, assessment => assessment.lesson)
   id: number;
 

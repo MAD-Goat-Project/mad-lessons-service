@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -32,7 +33,7 @@ export class CategoriesController {
 
   @Get(':id')
   @UsePipes(ValidationPipe)
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.categoriesService.findOne(+id);
   }
 

@@ -4,7 +4,7 @@ import { AssessmentEntity } from '../assessment/assessment.entity';
 
 @Entity('hint')
 export class HintEntity implements IHint {
-  @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
+  @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   id: number;
 
   @OneToMany(() => AssessmentEntity, (assessment) => assessment.id)

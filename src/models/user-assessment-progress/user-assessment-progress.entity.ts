@@ -18,7 +18,7 @@ import { IUserAssessmentProgress } from './user-assessment-progress.interface';
   },
 )
 export class UserAssessmentProgressEntity implements IUserAssessmentProgress {
-  @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
+  @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   id: number;
 
   @ManyToOne(() => AssessmentEntity)

@@ -14,7 +14,7 @@ import { LessonEntity } from '../lesson/lesson.entity';
   unique: true,
 })
 export class UserLessonProgressEntity implements IUserLessonProgress {
-  @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
+  @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   id: number;
 
   @ManyToOne(() => LessonEntity)

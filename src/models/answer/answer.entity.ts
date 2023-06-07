@@ -10,7 +10,7 @@ import { IAnswer } from './answer.interface';
 
 @Entity('answer')
 export class AnswerEntity implements IAnswer {
-  @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
+  @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   id: number;
 
   @ManyToOne(() => AssessmentEntity)
