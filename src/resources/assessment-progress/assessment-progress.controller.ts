@@ -13,6 +13,7 @@ import {
 import { AssessmentProgressService } from './assessment-progress.service';
 import { CreateAssessmentProgressDto } from './dto/create-assessment-progress.dto';
 import { UpdateAssessmentProgressDto } from './dto/update-assessment-progress.dto';
+import { RoleMatchingMode, Roles } from 'nest-keycloak-connect';
 
 @Controller('assessment-progress')
 export class AssessmentProgressController {
@@ -22,22 +23,26 @@ export class AssessmentProgressController {
 
   @UsePipes(ValidationPipe)
   @Post()
+  @Roles({ roles: ['realm:app-user'], mode: RoleMatchingMode.ALL })
   create(@Body() createAssessmentProgressDto: CreateAssessmentProgressDto) {
     return this.assessmentProgressService.create(createAssessmentProgressDto);
   }
 
   @Get()
+  @Roles({ roles: ['realm:app-user'], mode: RoleMatchingMode.ALL })
   findAll() {
     return this.assessmentProgressService.findAll();
   }
 
   // TODO: Add ParseInt to all get requests for id
   @Get(':id')
+  @Roles({ roles: ['realm:app-user'], mode: RoleMatchingMode.ALL })
   findOne(@Param('id', ParseIntPipe) id: string) {
     return this.assessmentProgressService.findOne(+id);
   }
 
   @Patch(':id')
+  @Roles({ roles: ['realm:app-user'], mode: RoleMatchingMode.ALL })
   update(
     @Param('id') id: string,
     @Body() updateAssessmentProgressDto: UpdateAssessmentProgressDto,
@@ -50,6 +55,7 @@ export class AssessmentProgressController {
 
   //TODO: Validate SSRF
   @Get('user/:userId/assessment/:assessmentId')
+  @Roles({ roles: ['realm:app-user'], mode: RoleMatchingMode.ALL })
   findAssessmentProgressByUserId(
     @Param('userId') userId: string,
     @Param('assessmentId', ParseIntPipe) assessmentId: number,
@@ -61,6 +67,7 @@ export class AssessmentProgressController {
   }
 
   @Delete(':id')
+  @Roles({ roles: ['realm:app-admin'], mode: RoleMatchingMode.ALL })
   remove(@Param('id') id: string) {
     return this.assessmentProgressService.remove(+id);
   }

@@ -10,6 +10,7 @@ import { AssessmentEntity } from '../assessment/assessment.entity';
 import { IUserAssessmentProgress } from './user-assessment-progress.interface';
 
 @Entity('user_assessment_progress')
+// TODO: Validate uniqueness of user_id, assessment_id, status
 @Index(
   'idx_user_assessment_progress_unique',
   ['user_id', 'assessment_id', 'status'],
