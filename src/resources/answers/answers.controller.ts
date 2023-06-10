@@ -16,6 +16,7 @@ import { CreateAnswerDto } from './dto/create-answer.dto';
 import { UpdateAnswerDto } from './dto/update-answer.dto';
 import { validateAnswerDto } from './dto/validate-answer.dto';
 import { RoleMatchingMode, Roles } from 'nest-keycloak-connect';
+import { validateAnswersDto } from './dto/validate-answers.dto';
 
 @Controller('assessments/:assessment/answers')
 export class AnswersController {
@@ -68,5 +69,15 @@ export class AnswersController {
     @Body() body: validateAnswerDto,
   ) {
     return this.answersService.validateAnswer(assessmentId, body);
+  }
+
+  @UsePipes(ValidationPipe)
+  @Post('validation')
+  @Roles({ roles: ['realm:app-user'], mode: RoleMatchingMode.ALL })
+  validateAnswers(
+    @Param('assessment', ParseIntPipe) assessmentId: number,
+    @Body() body: validateAnswersDto,
+  ) {
+    return this.answersService.validateAnswers(assessmentId, body);
   }
 }

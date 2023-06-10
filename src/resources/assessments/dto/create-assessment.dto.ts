@@ -26,4 +26,8 @@ export class CreateAssessmentDto {
   @IsOptional()
   @IsString()
   goal: string;
+
+  @IsOptional()
+  @IsString({ each: true })
+  quiz: string[];
 }

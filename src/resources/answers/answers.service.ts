@@ -5,6 +5,7 @@ import { AnswerEntity } from '../../models/answer/answer.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { validateAnswerDto } from './dto/validate-answer.dto';
+import { validateAnswersDto } from './dto/validate-answers.dto';
 
 @Injectable()
 export class AnswersService {
@@ -62,6 +63,31 @@ export class AnswersService {
 
     return {
       isCorrect: answerFromDB.description === answerDTO.answer,
+    };
+  }
+
+  async validateAnswers(
+    assessmentId: number,
+    answersArray: validateAnswersDto,
+  ) {
+    const answerFromDB = await this.answerRepository
+      .createQueryBuilder('answer')
+      .where('answer.assessment_id = :assessmentId', { assessmentId })
+      .orderBy('answer.id', 'ASC')
+      .getOne();
+
+    if (!answerFromDB) {
+      throw new NotFoundException(
+        'Answer not found for the provided assessment',
+      );
+    }
+
+    const isCorrect = answersArray.answers.every((answer) => {
+      return answerFromDB.correct_answers.includes(answer);
+    });
+
+    return {
+      isCorrect,
     };
   }
 }

@@ -17,4 +17,8 @@ export class CreateAnswerDto {
   @IsNotEmpty()
   @IsString()
   description: string;
+
+  @IsNotEmpty()
+  @IsString({ each: true })
+  correct_answers: string[];
 }

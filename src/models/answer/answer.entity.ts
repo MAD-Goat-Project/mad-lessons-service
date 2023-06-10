@@ -20,6 +20,9 @@ export class AnswerEntity implements IAnswer {
   @Column({ type: 'text' })
   description: string;
 
+  @Column('text', { array: true, default: '{}', nullable: true })
+  correct_answers: string[];
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 

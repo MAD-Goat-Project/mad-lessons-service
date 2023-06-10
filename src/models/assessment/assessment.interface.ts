@@ -14,5 +14,6 @@ export interface IAssessment {
   lesson_id: number;
   type: AssessmentType;
   description: string;
+  quiz: string[];
   goal: string;
 }

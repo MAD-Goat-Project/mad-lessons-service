@@ -26,6 +26,9 @@ export class AssessmentEntity implements IAssessment {
   @Column({ type: 'text', nullable: true })
   goal: string;
 
+  @Column('text', { array: true, default: '{}', nullable: true })
+  quiz: string[];
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 
