@@ -4,7 +4,6 @@ import { UpdateAnswerDto } from './dto/update-answer.dto';
 import { AnswerEntity } from '../../models/answer/answer.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { validateAnswerDto } from './dto/validate-answer.dto';
 import { validateAnswersDto } from './dto/validate-answers.dto';
 
 @Injectable()
@@ -48,24 +47,6 @@ export class AnswersService {
       .getMany();
   }
 
-  async validateAnswer(assessmentId: number, answerDTO: validateAnswerDto) {
-    const answerFromDB = await this.answerRepository
-      .createQueryBuilder('answer')
-      .where('answer.assessment_id = :assessmentId', { assessmentId })
-      .orderBy('answer.id', 'ASC')
-      .getOne();
-
-    if (!answerFromDB) {
-      throw new NotFoundException(
-        'Answer not found for the provided assessment',
-      );
-    }
-
-    return {
-      isCorrect: answerFromDB.description === answerDTO.answer,
-    };
-  }
-
   async validateAnswers(
     assessmentId: number,
     answersArray: validateAnswersDto,
@@ -82,6 +63,13 @@ export class AnswersService {
       );
     }
 
+    if (answerFromDB.correct_answers.length !== answersArray.answers.length) {
+      return {
+        isCorrect: false,
+      };
+    }
+
+    // TODO : Improve this logic or add unit tests to cover empty arrays
     const isCorrect = answersArray.answers.every((answer) => {
       return answerFromDB.correct_answers.includes(answer);
     });
