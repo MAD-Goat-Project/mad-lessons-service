@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LessonsModule } from './resources/lessons/lessons.module';
 import { ConfigModule } from '@nestjs/config';
-import { PostgresProviderModule } from './providers/postgres.provider.module';
+import { PostgresProviderModule } from './providers/postgres/postgres.provider.module';
 import { CategoriesModule } from './resources/categories/categories.module';
 import { AssessmentsModule } from './resources/assessments/assessments.module';
 import { AnswersModule } from './resources/answers/answers.module';

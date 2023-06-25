@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import entities from '../models/entitities';
+import entities from '../../models/entitities';
 
 /**
  * Import and provide base typeORM for a postgres database
  */
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
@@ -18,7 +17,7 @@ import entities from '../models/entitities';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         entities: entities,
-        // TODO : Change this to false in production
+        // TODO: Change this to false in production
         synchronize: true,
       }),
       inject: [ConfigService],

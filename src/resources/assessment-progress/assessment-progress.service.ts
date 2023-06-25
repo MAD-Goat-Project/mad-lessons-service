@@ -1,22 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateAssessmentProgressDto } from './dto/create-assessment-progress.dto';
 import { UpdateAssessmentProgressDto } from './dto/update-assessment-progress.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserAssessmentProgressEntity } from '../../models/user-assessment-progress/user-assessment-progress.entity';
+import { RabbitMQService } from '../../providers/rabbit-mq/rabbit-mq.provider.service';
 
 @Injectable()
 export class AssessmentProgressService {
   constructor(
     @InjectRepository(UserAssessmentProgressEntity)
     private readonly assessmentProgressRepository: Repository<UserAssessmentProgressEntity>,
+    @Inject(RabbitMQService)
+    private readonly rabbitMQService: RabbitMQService,
   ) {}
 
   // TODO: Validate that the same user cannot have the same assessment progress twice
   // TODO: Validate that the user is not able to create an assessment progress for an assessment that does not exist
   // TODO: Validate that the user is not able to create an assessment progress for an assessment that is not assigned to them
 
-  create(createAssessmentProgressDto: CreateAssessmentProgressDto) {
+  async create(createAssessmentProgressDto: CreateAssessmentProgressDto) {
     const newAssessmentProgress = this.assessmentProgressRepository.create(
       createAssessmentProgressDto,
     );
@@ -54,5 +57,12 @@ export class AssessmentProgressService {
         { userId, assessmentId },
       )
       .getOne();
+  }
+
+  async sendAssessmentCompletedMessage(assessmentId: number, userId: string) {
+    this.rabbitMQService.send('lesson.completed', {
+      assessmentId,
+      userId,
+    });
   }
 }

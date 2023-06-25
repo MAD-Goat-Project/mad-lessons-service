@@ -41,7 +41,7 @@ export class LessonProgressService {
       .getOne();
   }
 
-  update(id: number, updateLessonProgressDto: UpdateLessonProgressDto) {
+  async update(id: number, updateLessonProgressDto: UpdateLessonProgressDto) {
     return this.userLessonProgressRepository.update(
       id,
       updateLessonProgressDto,

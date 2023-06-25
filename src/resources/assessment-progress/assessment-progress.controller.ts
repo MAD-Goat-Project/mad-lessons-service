@@ -14,6 +14,7 @@ import { AssessmentProgressService } from './assessment-progress.service';
 import { CreateAssessmentProgressDto } from './dto/create-assessment-progress.dto';
 import { UpdateAssessmentProgressDto } from './dto/update-assessment-progress.dto';
 import { RoleMatchingMode, Roles } from 'nest-keycloak-connect';
+import { AssessmentStatus } from '../../models/user-assessment-progress/user-assessment-progress.interface';
 
 @Controller('assessment-progress')
 export class AssessmentProgressController {
@@ -24,8 +25,21 @@ export class AssessmentProgressController {
   @UsePipes(ValidationPipe)
   @Post()
   @Roles({ roles: ['realm:app-user'], mode: RoleMatchingMode.ALL })
-  create(@Body() createAssessmentProgressDto: CreateAssessmentProgressDto) {
-    return this.assessmentProgressService.create(createAssessmentProgressDto);
+  async create(
+    @Body() createAssessmentProgressDto: CreateAssessmentProgressDto,
+  ) {
+    const createdProgress = await this.assessmentProgressService.create(
+      createAssessmentProgressDto,
+    );
+
+    if (createAssessmentProgressDto.status === AssessmentStatus.COMPLETED) {
+      await this.assessmentProgressService.sendAssessmentCompletedMessage(
+        createAssessmentProgressDto.assessment_id,
+        createAssessmentProgressDto.user_id,
+      );
+    }
+
+    return createdProgress;
   }
 
   @Get()
