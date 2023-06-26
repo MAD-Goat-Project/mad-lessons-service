@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   ParseIntPipe,
   Patch,
@@ -33,6 +34,10 @@ export class AssessmentProgressController {
     );
 
     if (createAssessmentProgressDto.status === AssessmentStatus.COMPLETED) {
+      Logger.log(
+        `Sending assessment completed message for assessment ${createAssessmentProgressDto.assessment_id} and user ${createAssessmentProgressDto.user_id}`,
+        'AssessmentProgressController',
+      );
       await this.assessmentProgressService.sendAssessmentCompletedMessage(
         createAssessmentProgressDto.assessment_id,
         createAssessmentProgressDto.user_id,
