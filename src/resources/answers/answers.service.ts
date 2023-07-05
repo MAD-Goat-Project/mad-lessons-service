@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { CreateAnswerDto } from './dto/create-answer.dto';
 import { UpdateAnswerDto } from './dto/update-answer.dto';
 import { AnswerEntity } from '../../models/answer/answer.entity';
@@ -13,7 +13,6 @@ export class AnswersService {
     private readonly answerRepository: Repository<AnswerEntity>,
   ) {}
 
-  // TODO: Improve exception handling
   create(createAnswerDto: CreateAnswerDto) {
     const newAnswer = this.answerRepository.create(createAnswerDto);
     return this.answerRepository.save(newAnswer);
@@ -58,21 +57,26 @@ export class AnswersService {
       .getOne();
 
     if (!answerFromDB) {
+      Logger.error(
+        `Answer not found for the provided assessment ${assessmentId}`,
+      );
       throw new NotFoundException(
         'Answer not found for the provided assessment',
       );
     }
 
-    if (answerFromDB.correct_answers.length !== answersArray.answers.length) {
-      return {
-        isCorrect: false,
-      };
-    }
+    const lowercaseCorrectAnswers = new Set(
+      answerFromDB.correct_answers.map((answer) => answer.toLowerCase()),
+    );
+    const lowercaseProvidedAnswers = new Set(
+      answersArray.answers.map((answer) => answer.toLowerCase()),
+    );
 
-    // TODO : Improve this logic or add unit tests to cover empty arrays
-    const isCorrect = answersArray.answers.every((answer) => {
-      return answerFromDB.correct_answers.includes(answer);
-    });
+    const isCorrect =
+      lowercaseCorrectAnswers.size === lowercaseProvidedAnswers.size &&
+      [...lowercaseProvidedAnswers].every((answer) =>
+        lowercaseCorrectAnswers.has(answer),
+      );
 
     return {
       isCorrect,
