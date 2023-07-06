@@ -19,10 +19,14 @@ export class AssessmentProgressService {
   // TODO: Validate that the user is not able to create an assessment progress for an assessment that does not exist
   // TODO: Validate that the user is not able to create an assessment progress for an assessment that is not assigned to them
 
-  async create(createAssessmentProgressDto: CreateAssessmentProgressDto) {
-    const newAssessmentProgress = this.assessmentProgressRepository.create(
-      createAssessmentProgressDto,
-    );
+  async create(
+    createAssessmentProgressDto: CreateAssessmentProgressDto,
+    userId: string,
+  ) {
+    const newAssessmentProgress = this.assessmentProgressRepository.create({
+      ...createAssessmentProgressDto,
+      user_id: userId,
+    });
     return this.assessmentProgressRepository.save(newAssessmentProgress);
   }
 

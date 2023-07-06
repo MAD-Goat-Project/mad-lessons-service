@@ -14,7 +14,11 @@ import {
 import { AssessmentProgressService } from './assessment-progress.service';
 import { CreateAssessmentProgressDto } from './dto/create-assessment-progress.dto';
 import { UpdateAssessmentProgressDto } from './dto/update-assessment-progress.dto';
-import { RoleMatchingMode, Roles } from 'nest-keycloak-connect';
+import {
+  AuthenticatedUser,
+  RoleMatchingMode,
+  Roles,
+} from 'nest-keycloak-connect';
 import { AssessmentStatus } from '../../models/user-assessment-progress/user-assessment-progress.interface';
 
 @Controller('assessment-progress')
@@ -23,24 +27,28 @@ export class AssessmentProgressController {
     private readonly assessmentProgressService: AssessmentProgressService,
   ) {}
 
+  // TODO: Validate that we cannot update the same assessment twice
+  // TODO: Remove the userID from the body and use the authenticated user instead
   @UsePipes(ValidationPipe)
   @Post()
   @Roles({ roles: ['realm:app-user'], mode: RoleMatchingMode.ALL })
   async create(
     @Body() createAssessmentProgressDto: CreateAssessmentProgressDto,
+    @AuthenticatedUser() user: any,
   ) {
     const createdProgress = await this.assessmentProgressService.create(
       createAssessmentProgressDto,
+      user.sub,
     );
 
     if (createAssessmentProgressDto.status === AssessmentStatus.COMPLETED) {
       Logger.log(
-        `Sending assessment completed message for assessment ${createAssessmentProgressDto.assessment_id} and user ${createAssessmentProgressDto.user_id}`,
+        `Sending assessment completed message for assessment ${createAssessmentProgressDto.assessment_id} and user ${user.sub}`,
         'AssessmentProgressController',
       );
       await this.assessmentProgressService.sendAssessmentCompletedMessage(
         createAssessmentProgressDto.assessment_id,
-        createAssessmentProgressDto.user_id,
+        user.sub,
       );
     }
 
@@ -72,7 +80,6 @@ export class AssessmentProgressController {
     );
   }
 
-  //TODO: Validate SSRF
   @Get('user/:userId/assessment/:assessmentId')
   @Roles({ roles: ['realm:app-user'], mode: RoleMatchingMode.ALL })
   findAssessmentProgressByUserId(

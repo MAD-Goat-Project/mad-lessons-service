@@ -7,12 +7,18 @@ import { PostgresProviderModule } from './providers/postgres/postgres.provider.m
 import { CategoriesModule } from './resources/categories/categories.module';
 import { AssessmentsModule } from './resources/assessments/assessments.module';
 import { AnswersModule } from './resources/answers/answers.module';
-import { KeycloakConnectModule } from 'nest-keycloak-connect';
+import {
+  AuthGuard,
+  KeycloakConnectModule,
+  ResourceGuard,
+  RoleGuard,
+} from 'nest-keycloak-connect';
 import { KeycloakConfigService } from './config/keycloak-config.service';
 import { AppConfigModule } from './config/app-config.module';
 import { AssessmentProgressModule } from './resources/assessment-progress/assessment-progress.module';
 import { HintsModule } from './resources/hints/hints.module';
 import { LessonProgressModule } from './resources/lesson-progress/lesson-progress.module';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -33,7 +39,7 @@ import { LessonProgressModule } from './resources/lesson-progress/lesson-progres
   controllers: [AppController],
   providers: [
     AppService,
-    /*// This adds a global level authentication guard,
+    // This adds a global level authentication guard,
     // you can also have it scoped
     // if you like.
     //
@@ -58,7 +64,7 @@ import { LessonProgressModule } from './resources/lesson-progress/lesson-progres
     {
       provide: APP_GUARD,
       useClass: RoleGuard,
-    },*/
+    },
   ],
 })
 export class AppModule {}

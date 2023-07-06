@@ -1,4 +1,10 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Inject,
+  Injectable,
+  Logger,
+} from '@nestjs/common';
 import { CreateLessonDto } from './dto/create-lesson.dto';
 import { UpdateLessonDto } from './dto/update-lesson.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -16,12 +22,14 @@ export class LessonsService {
   ) {}
 
   async create(category: number, createLessonDto: CreateLessonDto) {
-    // TODO : Improve Exceptions
     const categoryExists = await this.categoryService.findOne(
       createLessonDto.category_id,
     );
 
     if (!categoryExists && createLessonDto.category_id !== category) {
+      Logger.error(
+        `Category with ID ${createLessonDto.category_id} does not exist`,
+      );
       throw new HttpException('Invalid category ID', HttpStatus.BAD_REQUEST);
     }
 
@@ -29,8 +37,12 @@ export class LessonsService {
     return this.lessonRepository.save(newLesson);
   }
 
-  // TODO : Validate Category ID
-  findAll(category_id: number) {
+  async findAll(category_id: number) {
+    // Validate that the category exists
+    const categoryExists = await this.categoryService.findOne(category_id);
+    if (!categoryExists) {
+      throw new HttpException('Invalid category ID', HttpStatus.BAD_REQUEST);
+    }
     return this.lessonRepository
       .createQueryBuilder('lesson')
       .where('lesson.category_id = :category_id', { category_id })
