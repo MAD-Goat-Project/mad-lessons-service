@@ -42,7 +42,7 @@ export class AssessmentsService {
       .createQueryBuilder('assessment')
       .leftJoinAndSelect('assessment.lesson_id', 'lesson') // Assuming the foreign key column is named 'lesson_id'
       .where('assessment.lesson_id = :lesson_id', { lesson_id })
-      .orderBy('assessment.id', 'ASC')
+      .orderBy('assessment.type', 'ASC')
       .getMany();
   }
 }
