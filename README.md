@@ -1,7 +1,5 @@
 [![Test][gha-test-badge]][gha-test-url] [![Publish Docker image][gha-build-badge]][gha-build-url]
 
-
-
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
