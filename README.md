@@ -1,4 +1,4 @@
-[![Test][gha-test-badge]][gha-test-url] [![Publish Docker image][gha-build-badge]][gha-build-url]
+[![Test][gha-test-badge]][gha-test-url] [![Publish Docker image][gha-build-badge]][gha-build-url] [![codecov-badge]][codecov]
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
@@ -55,3 +55,9 @@ $ yarn run test:cov
 [gha-build-badge]: https://github.com/MAD-Goat-Project/mad-lessons-service/actions/workflows/publish.yml/badge.svg
 
 [gha-build-url]: https://github.com/MAD-Goat-Project/mad-lessons-service/actions/workflows/publish.yml
+
+
+[codecov]: https://codecov.io/gh/MAD-Goat-Project/mad-lessons-service
+
+[codecov-badge]: https://codecov.io/gh/MAD-Goat-Project/mad-lessons-service/graph/badge.svg?token=48RIIR4CKN
+
