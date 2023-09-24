@@ -7,4 +7,4 @@ on:
 
 jobs:
   build-and-push-image:
-    uses: MAD-Goat-Project/github-actions-workflows/.github/workflows/publish-docker.yml@main
+    uses: MAD-Goat-Project/github-actions-workflows/.github/workflows/publish-docker.yml@v1
