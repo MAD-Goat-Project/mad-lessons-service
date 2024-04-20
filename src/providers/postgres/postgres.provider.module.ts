@@ -17,8 +17,7 @@ import entities from '../../models/entitities';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         entities: entities,
-        // TODO: Change this to false in production
-        synchronize: true,
+        synchronize: configService.get('NODE_ENV') === 'development',
       }),
       inject: [ConfigService],
     }),

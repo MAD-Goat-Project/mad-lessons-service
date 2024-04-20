@@ -61,7 +61,6 @@ export class AssessmentProgressController {
     return this.assessmentProgressService.findAll();
   }
 
-  // TODO: Add ParseInt to all get requests for id
   @Get(':id')
   @Roles({ roles: ['realm:app-user'], mode: RoleMatchingMode.ALL })
   findOne(@Param('id', ParseIntPipe) id: string) {
@@ -71,7 +70,7 @@ export class AssessmentProgressController {
   @Patch(':id')
   @Roles({ roles: ['realm:app-user'], mode: RoleMatchingMode.ALL })
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: string,
     @Body() updateAssessmentProgressDto: UpdateAssessmentProgressDto,
   ) {
     return this.assessmentProgressService.update(
@@ -94,7 +93,7 @@ export class AssessmentProgressController {
 
   @Delete(':id')
   @Roles({ roles: ['realm:app-admin'], mode: RoleMatchingMode.ALL })
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: string) {
     return this.assessmentProgressService.remove(+id);
   }
 }

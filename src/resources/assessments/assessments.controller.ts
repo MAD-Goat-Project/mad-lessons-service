@@ -49,7 +49,7 @@ export class AssessmentsController {
   @Patch(':id')
   @Roles({ roles: ['realm:app-admin'], mode: RoleMatchingMode.ALL })
   update(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateAssessmentDto: UpdateAssessmentDto,
   ) {
     return this.assessmentsService.update(+id, updateAssessmentDto);
